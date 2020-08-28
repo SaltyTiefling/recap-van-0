@@ -18,6 +18,7 @@ namespace recap_van_0
             do
             {
                 Console.Clear();
+                Console.WriteLine("kies je oefening:");
                 choice = SelectMenu("Datatypes",
                     "Logische structuren",
                     "Math en Random",
@@ -180,6 +181,8 @@ namespace recap_van_0
             while (keuze != 6)
             {
 
+                if ((keuze = (byte)SelectMenu("optellen", "aftrekken", "vermenigvuldigen", "delen", "modulo", "Exit")) == 6) break;
+
                 do
                 {
                     Console.Write("geef getal 1 in:");
@@ -209,31 +212,8 @@ namespace recap_van_0
                     }
 
                 } while (!correct);
-                correct = false;
-                do
-                {
-                    Console.WriteLine("1. optellen");
-                    Console.WriteLine("2. aftrekken");
-                    Console.WriteLine("3. vermenigvuldigen");
-                    Console.WriteLine("4. delen");
-                    Console.WriteLine("5. modulo");
-                    Console.WriteLine("6. Exit");
-                    Console.Write("keuze:");
-                    try
-                    {
-                        keuze = byte.Parse(Console.ReadLine());
-                        if (keuze < 1 || keuze > 6)
-                        {
-                            throw new ArgumentOutOfRangeException();
-                        }
-                        correct = true;
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("geef geldige waarde in.");
-                    }
 
-                } while (!correct);
+
 
                 ConsoleColor selectionForeground = Console.BackgroundColor;
                 ConsoleColor selectionBackground = Console.ForegroundColor;
@@ -260,11 +240,13 @@ namespace recap_van_0
                         break;
                 }
                 Console.ResetColor();
-                Console.WriteLine();
             }
+            Console.WriteLine();
+
 
             Console.ReadLine();
         }
+
         private static void Oefening3()
         {
             throw new NotImplementedException();
@@ -288,11 +270,12 @@ namespace recap_van_0
 
         static int SelectMenu(params string[] menu)
         {
+
             Console.CursorVisible = false;
-            Console.Clear();
 
             int selection = 1;
             bool selected = false;
+            int cursorTop = Console.CursorTop;
 
             ConsoleColor selectionForeground = Console.BackgroundColor;
             ConsoleColor selectionBackground = Console.ForegroundColor;
@@ -328,9 +311,9 @@ namespace recap_van_0
                 }
 
                 selection = Math.Min(Math.Max(selection, 1), menu.Length);
-                Console.SetCursorPosition(0, 0);
+                Console.SetCursorPosition(0, cursorTop);
             }
-            Console.Clear();
+            Console.SetCursorPosition(0, cursorTop + menu.Length - 1);
             Console.CursorVisible = true;
             return selection;
         }
