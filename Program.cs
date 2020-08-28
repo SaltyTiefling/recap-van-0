@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
@@ -283,11 +284,12 @@ namespace recap_van_0
                 }
                 Console.Write(item);
             }
+            Console.WriteLine("\t Wat gebeurt er als je foreach gebruikt op een string? hij maakt een array van characters en doorloopt die");
             Console.WriteLine();
         }
         private static void Oefening5()
         {
-            
+
             Console.WriteLine("Probeer aan de hand van.ToString() de volgende notities van de huidige tijd te noteren");
             Console.WriteLine($"\t 28-08-2020 ~ {DateTime.Now.ToString("dd-MM-yyyy")}");
             Console.WriteLine($"\t 28/08/2020 03:45:15 ~ {DateTime.Now}");
@@ -301,7 +303,77 @@ namespace recap_van_0
         }
         private static void Oefening6()
         {
-            throw new NotImplementedException();
+            string file = "testing.txt";
+            Console.WriteLine("\t Maak een textbestand aan als het nog niet bestaat");
+            if (!File.Exists(file))
+            {
+                File.Create(file).Dispose();
+            }
+            Console.WriteLine("\t Schrijf een array naar dat bestand");
+            string[] stringArray = new string[] { "test1", "test2", "test3" };
+            using (StreamWriter writer = new StreamWriter(file))
+            {
+                foreach (string item in stringArray)
+                {
+                    writer.WriteLine(item);
+                }
+            }
+
+            Console.WriteLine("\t Lees daarna dat bestand uit");
+            using (StreamReader reader = new StreamReader(file))
+            {
+                Console.WriteLine(reader.ReadToEnd());
+            }
+
+            Console.WriteLine("\t Verwijder iets in dat bestand");
+            List<string> fileLines = new List<string>();
+            using (StreamReader reader = new StreamReader(file))
+            {
+                while (!reader.EndOfStream)
+                {
+                    fileLines.Add(reader.ReadLine());
+                }
+            }
+            fileLines.Remove("test1");
+            using (StreamWriter writer = new StreamWriter(file))
+            {
+                foreach (string item in fileLines)
+                {
+                    writer.WriteLine(item);
+                }
+            }
+
+            using (StreamReader reader = new StreamReader(file))
+            {
+                Console.WriteLine(reader.ReadToEnd());
+            }
+
+            Console.WriteLine("\t Maak aanpassingen in dat bestand");
+            fileLines.Clear();
+            using (StreamReader reader = new StreamReader(file))
+            {
+                while (!reader.EndOfStream)
+                {
+                    fileLines.Add(reader.ReadLine());
+                }
+            }
+            fileLines.Add("test4");
+            using (StreamWriter writer = new StreamWriter(file))
+            {
+                foreach (string item in fileLines)
+                {
+                    writer.WriteLine(item);
+                }
+            }
+
+            using (StreamReader reader = new StreamReader(file))
+            {
+                Console.WriteLine(reader.ReadToEnd());
+            }
+            Console.WriteLine("Wat doet using bij een streamwriter en streamreader? Wat als je dat niet gebruikt? het zorgd ervoor dat de variabelen, " +
+                "in dit geval de streamreader/-writer, enkel worden grbruikt in die context en niet erbuiten." +
+                "als je deze niet gebruikt hier dan blijf het bestand in gebruik en kan je niet verder werken in het bestand met andere functies");
+
         }
         private static void Oefening7()
         {
