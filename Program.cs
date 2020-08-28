@@ -27,7 +27,7 @@ namespace recap_van_0
                     "Bestanden",
                     "Methodes",
                     "exit");
-
+                Console.Clear();
                 switch (choice)
                 {
                     case 1:
@@ -129,10 +129,12 @@ namespace recap_van_0
             Console.WriteLine("\t Wat doet het keywoord break in een loop? het breekt de loop en stopt het");
             Console.WriteLine();
             Console.WriteLine("Maak een loop in je programma dat je integer variabel optelt en noteert in de console tot dat deze groter is dan de double. Als het groter start dan de double, telt hij dus nooit op. Denk na over welke loop je hier gebruikt.");
-            for (; !(integer > doub); integer++)
+            for (; !(integer > doub); doub++, integer++)
             {
+
                 Console.Write(integer + " ");
             }
+
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Ga na hoe een for loop werkt. for(statement 1; statement 2; statement 3)");
@@ -249,15 +251,53 @@ namespace recap_van_0
 
         private static void Oefening3()
         {
-            throw new NotImplementedException();
+            Random rng = new Random();
+            Console.WriteLine("Hoe maak je een random getal aan?");
+            Console.WriteLine($"\t Van 0 tot en met 10: {rng.Next(0, 10 + 1)}");
+            Console.WriteLine($"\t Van 0 tot 10, kommagetal: {rng.NextDouble() * (10 - 0) + 0}");
+            Console.WriteLine($"\t Van 5 tot en met 15: {rng.Next(5, 15 + 1)}");
+            Console.WriteLine($"\t Van 5 tot 15, kommagetal: {rng.NextDouble() * (15 - 5) + 5}");
         }
         private static void Oefening4()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\t Maak een array van integers: int[] intArray = new int[]{...,...};");
+            int[] intArray = new int[] { 1, 2, 4, 8, 12 };
+
+            Console.WriteLine("\t Maak een array van strings: string[] stringArray = new string[]{...,...};");
+            string[] stringArray = new string[] { "tes1", "test2", "test3" };
+
+            Console.WriteLine("\t Gebruik een foreach loop om elke integer in een array op te tellen en deze te noteren.");
+            int antwoord = 0;
+            foreach (int item in intArray)
+            {
+                antwoord += item;
+            } // of intArray.Sum();
+            Console.WriteLine(antwoord);
+            Console.WriteLine();
+            Console.WriteLine("\t Maak een foreach loop om elke string te noteren (bv namen)");
+            foreach (string item in stringArray)
+            {
+                if (item != stringArray[0])
+                {
+                    Console.Write(", ");
+                }
+                Console.Write(item);
+            }
+            Console.WriteLine();
         }
         private static void Oefening5()
         {
-            throw new NotImplementedException();
+            
+            Console.WriteLine("Probeer aan de hand van.ToString() de volgende notities van de huidige tijd te noteren");
+            Console.WriteLine($"\t 28-08-2020 ~ {DateTime.Now.ToString("dd-MM-yyyy")}");
+            Console.WriteLine($"\t 28/08/2020 03:45:15 ~ {DateTime.Now}");
+            Console.WriteLine($"\t 28 August 2020 ~ {DateTime.Now.ToString("dd MMMM yyyy")}");
+            Console.WriteLine($"\t Friday 28 August ~ {DateTime.Now.ToString("dddd dd MMMM")}");
+            Console.WriteLine($"\t 15:45:15 ~ {DateTime.Now.ToString("HH:mm:ss")}");
+            Console.WriteLine($"\t 28 Aug 2020 ~ {DateTime.Now.ToString("dd MMM yyyy")}");
+            Console.WriteLine($"\t 03:45:15 PM ~ {DateTime.Now.ToString("hh:mm:ss tt")}");
+            Console.WriteLine($"\t 28/08/20 ~ {DateTime.Now.ToString("dd/MM/yyyy")}");
+
         }
         private static void Oefening6()
         {
