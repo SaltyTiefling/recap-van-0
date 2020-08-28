@@ -377,7 +377,18 @@ namespace recap_van_0
         }
         private static void Oefening7()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\t Hoe maak je een methode aan?");
+            Console.WriteLine("private void Oefening7(){}");
+            Console.WriteLine("\t Wat doet void? Waarom heeft het geen return waarde?");
+            Console.WriteLine("het zorgd ervoor dat het programma geen return waarde verwacht en gewoon de methode dropd op het einde");
+            Console.WriteLine("\t Wat is het verschil tussen parameters en argumenten?");
+            Console.WriteLine("parameters zijn de waardes die je vraagd en argumenten zijn de waardes die het methode ontvangt ");
+            Console.WriteLine("\t Wat betekend de vaak voorkomende error “not all paths return a value”? Hoe los je het op?");
+            Console.WriteLine("het betekend dat er een logisch pad is dat de methode kan volgen waar je geen return waarde hebt. " +
+                "Dit los je op door je paden af te lopen en te zien welke return waarde daar hoord en die dan te plaatsen");
+            Console.WriteLine("\t In een methode kan je in een Switch statement break; vervangen door return; Waarom ?");
+            Console.WriteLine("Omdat de methode stopt dus niet naar de andere cases kijkt in je switch dus dien't het dezelfde doel als een break");
+
         }
 
         static int SelectMenu(params string[] menu)
